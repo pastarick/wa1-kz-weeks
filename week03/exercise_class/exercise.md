@@ -11,8 +11,8 @@ Manage a list of objects and related database tables (`exams.sqlite`) that inclu
 
 The list of `Exam` objects, named `ExamList`, will have the following methods, operating on the database, which return Promises:
 
-– `add(exam)` // pass a fully-constructed `Exam` object
-– `getAll()` // returns (a Promise that resolves to) an `ExamList` with all the `Exams`
-– `find(courseCode)` //returns (a Promise that resolves to) the matching `Exam`
-– `afterDate(date)` // returns (a Promise that resolves to) an `ExamList` with the subset of `Exams` after the given date
+– `add(exam)` // pass a fully-constructed `Exam` object <br>
+– `getAll()` // returns (a Promise that resolves to) an `ExamList` with all the `Exams` <br>
+– `find(courseCode)` //returns (a Promise that resolves to) the matching `Exam` <br>
+– `afterDate(date)` // returns (a Promise that resolves to) an `ExamList` with the subset of `Exams` after the given date <br>
 – `getWorst(num)` // returns (a Promise that resolves to) an `ExamList` with the _num_ `Exams` with the lowest score
