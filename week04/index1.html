@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <!-- metadata: not shown in the page itself -->
+        <title>Exams</title>
+        <!--
+        preferred way to link a css file to html
+        it can also be done inline as attributes, e.g. style="color:red" and other ways,
+        but this way we mix the html and the css, i.e. structure/semantics vs style
+        moreover, it would be more complex to find inside the html document the style 
+        -->
+        <link href="style.css" rel="stylesheet">
+    </head>
+    <body>
+        <!-- 
+        h1 = title of level 1: there are 6 levels
+        NB: it is allowed to skip some levels of heading,
+        but it gives a validation error 
+        NB: html is about the structure and the semantics of
+        the structure, not about the appearance
+         => the size of the text isn't directly related 
+         => h1 is only the most important heading
+        NB: each browser has a different default stylesheet for html i.e. the user agent stylesheet
+         => writing css overrides the default style
+        NB: with inspect element, we can change temporarily => it doesn't change the actual html document
+        -->
+        <header>
+            <!--
+            header doesn't change the default style, but we can style differently header from body
+            -->
+            <h1>My Exams</h1>
+        </header>
+
+        <!--
+        aside for sidebar, but it must be styled with css
+        -->
+        <aside>
+            This is a sidebar
+        </aside>
+
+        <!--
+        main has a meaning: the main content of the page
+        there also exists the tag 'article' for newspaper pages
+
+        there also exists a generic container called div
+        -->
+        <main>
+            <p class="intro">
+                <!--
+                the href is mandatory
+                NB: h1 and p are block elements => they try to occupy all the space horizontally and after a block,
+                there is an automatic newline
+                a isn't block element, it's inline
+                -->
+                The table below summarizes my exams in the Master Degree in Computer Engineering at 
+                <a href="https://www.polito.it" target="_blank" title="The Politecnico Website">Politecnico di Torino</a>.
+            </p>
+            <table id="bigger-margin-top">
+                <thead>
+                    <tr>
+                        <!--
+                        the scope tells something to the page reader, e.g. for blind people
+                        -->
+                        <th scope="col">Date</th>
+                        <th scope="col">Exam</th>
+                        <th scope="col">Credits</th>
+                        <th scope="col">Score</th>
+                        <th scope="col">Actions</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>01/02/2022</td>
+                        <td>Computer Architecture</td>
+                        <td>10</td>
+                        <td>21</td>
+                        <td><button>X</button></td>
+                    </tr>
+                    <tr>
+                        <td>06/02/2022</td>
+                        <td>Computer Network Technologies and Services</td>
+                        <td>6</td>
+                        <td>26</td>
+                        <td><button>X</button></td>
+                    </tr>
+                    <tr>
+                        <td>15/02/2022</td>
+                        <td>Data Science and Database Technology</td>
+                        <td>8</td>
+                        <td>30L</td>
+                        <td><button>X</button></td>
+                    </tr>
+                    <tr>
+                        <td><input type="date"></td>
+                        <td><input type="text"></td>
+                        <td><input type="text" size="2"></td>
+                        <td><input type="text" size="3"></td>
+                        <td><button>+</button></td>
+                    </tr>
+                </tbody>
+            </table>
+        </main> 
+        <!--
+        NB: it's ok to use the actual character, but it's better and safer to 
+        use the html entities, even  if we specify the charset
+        e.g. è = &eacute;
+        -->
+        <footer>
+            <p>&COPY; 2022 - Web Appplications I (K-Z)</p>
+        </footer>
+    </body>
+
+</html>
