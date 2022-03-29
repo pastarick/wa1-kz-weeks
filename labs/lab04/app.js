@@ -10,7 +10,6 @@ function Film(id, title, favourite, date = undefined, rating = undefined) {
     this.favourite = favourite || false;
     this.date = date ? dayjs(date) : date;
     this.rating = rating;
-    this.library = undefined;
 
     this.toString = () => {
         let s = `\nFilm ${this.id}:\n`
@@ -35,13 +34,12 @@ function FilmLibrary() {
             this.list.push(...film_list)
         }
         let films = [new Film(1, "Pulp Fiction", true, "2022-03-10", 5),
-            new Film(2, "21 Grams", true, "2022-03-17", 4),
-            new Film(3, "Star Wars"),
-            new Film(4, "Matrix"),
-            new Film(5, "Shrek", false, "2022-03-21", 3),
+                    new Film(2, "21 Grams", true, "2022-03-17", 4),
+                    new Film(3, "Star Wars"),
+                    new Film(4, "Matrix"),
+                    new Film(5, "Shrek", false, "2022-03-21", 3),
         ];
         for (const film of films) {
-            film.library = this;
             this.addNewFilm(film);
         }
     }
@@ -132,9 +130,6 @@ function createFilmTableRow2(film) {
 
     s += `</td>
     </tr>`;
-
-
-
     return s;
 }
 
@@ -189,10 +184,9 @@ function populateTable(films) {
     const table = document.getElementById('film-table');
 
     for (const film of films) {
-        // const filmElement = createFilmTableRow2(film);
-        // table.insertAdjacentHTML('afterbegin', filmElement);
         const filmElement = createFilmTableRow(film);
-        table.insertAdjacentElement('afterbegin', filmElement);
+        console.log(filmElement);
+        table.insertAdjacentHTML('afterbegin', filmElement);
     }
 }
 
@@ -215,6 +209,8 @@ Id: 4, Title: Matrix, Favorite: false, Watch date: <not defined>, Score: <not as
 Id: 5, Title: Shrek, Favorite: false, Watch date: March 21, 2022, Score: 3
 */
 
+let filmLibrary = new FilmLibrary;
+filmLibrary.init();
 function sidebarInit(filmLibrary) {
     let pageTitle = document.getElementById('page-title');
 
@@ -279,6 +275,8 @@ function main() {
     let filmLibrary = new FilmLibrary;
     filmLibrary.init();
 
+const films = filmLibrary.getAll();
+populateTable(films);
     sidebarInit(filmLibrary);
 
     const films = filmLibrary.getAll();
