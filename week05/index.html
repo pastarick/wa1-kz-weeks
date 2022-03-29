@@ -12,6 +12,12 @@
     <!-- Custom CSS-->
     <link rel="stylesheet" href="custom.css">
 
+    <!-- DayJS -->
+    <script defer src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
+
+    <!-- JS -->
+    <script defer src="app.js"></script>
+
     <!-- Other meta tags -->
     <meta name="description" content="Exams">
     <meta name="author" content="wa1-kz-2022">
@@ -45,28 +51,8 @@
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-            <tbody>
-              <tr>
-                <td>01/02/2022</td>
-                <td>Computer Architecture</td>
-                <td>10</td>
-                <td>21</td>
-                <td><button class="btn btn-danger">X</button></td>
-              </tr>
-              <tr>
-                <td>06/02/2022</td>
-                <td>Computer Network Technologies and Services</td>
-                <td>6</td>
-                <td>26</td>
-                <td><button class="btn btn-danger">X</button></td>
-              </tr>
-              <tr>
-                <td>15/02/2022</td>
-                <td>Data Science and Database Technology</td>
-                <td>8</td>
-                <td>30L</td>
-                <td><button class="btn btn-danger">X</button></td>
-              </tr>
+            <!-- give an id to tbody instead of table because it is more precise => it will be quicker to add elements -->
+            <tbody id="exam-table">
               <tr>
                 <td><input class="form-control" type="date"></td>
                 <td><input class="form-control" type="text"></td>
