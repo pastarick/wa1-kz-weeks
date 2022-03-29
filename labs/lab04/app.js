@@ -10,7 +10,10 @@ function Film(id, title, favourite, date = undefined, rating = undefined) {
     this.favourite = favourite || false;
     this.date = date ? dayjs(date) : date;
     this.rating = rating;
+<<<<<<< HEAD
     this.library = undefined;
+=======
+>>>>>>> f431092 (lab04)
 
     this.toString = () => {
         let s = `\nFilm ${this.id}:\n`
@@ -35,6 +38,7 @@ function FilmLibrary() {
             this.list.push(...film_list)
         }
         let films = [new Film(1, "Pulp Fiction", true, "2022-03-10", 5),
+<<<<<<< HEAD
             new Film(2, "21 Grams", true, "2022-03-17", 4),
             new Film(3, "Star Wars"),
             new Film(4, "Matrix"),
@@ -42,6 +46,14 @@ function FilmLibrary() {
         ];
         for (const film of films) {
             film.library = this;
+=======
+                    new Film(2, "21 Grams", true, "2022-03-17", 4),
+                    new Film(3, "Star Wars"),
+                    new Film(4, "Matrix"),
+                    new Film(5, "Shrek", false, "2022-03-21", 3),
+        ];
+        for (const film of films) {
+>>>>>>> f431092 (lab04)
             this.addNewFilm(film);
         }
     }
@@ -83,6 +95,7 @@ function FilmLibrary() {
         return this.list.toString();
     }
 
+<<<<<<< HEAD
     /* Sidebar Methods */
 
     this.getAll = () => {
@@ -114,6 +127,16 @@ function createFilmTableRow2(film) {
                 <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
             </svg>
         ${film.title}</td>
+=======
+    this.getAll = () => {
+        return this.list;
+    }
+}
+
+function createFilmTableRow(film) {
+    let s = `<tr>
+        <td>${film.title}</td>
+>>>>>>> f431092 (lab04)
         <td><input class="form-check-input" type="checkbox" value="" 
             id="flexCheckDefault" ${film.favourite ? 'checked' : ''}>
             <label class="form-check-label" for="flexCheckDefault">
@@ -132,6 +155,7 @@ function createFilmTableRow2(film) {
 
     s += `</td>
     </tr>`;
+<<<<<<< HEAD
 
 
 
@@ -185,18 +209,30 @@ function createFilmTableRow(film) {
 }
 
 
+=======
+    return s;
+}
+
+>>>>>>> f431092 (lab04)
 function populateTable(films) {
     const table = document.getElementById('film-table');
 
     for (const film of films) {
+<<<<<<< HEAD
         // const filmElement = createFilmTableRow2(film);
         // table.insertAdjacentHTML('afterbegin', filmElement);
         const filmElement = createFilmTableRow(film);
         table.insertAdjacentElement('afterbegin', filmElement);
+=======
+        const filmElement = createFilmTableRow(film);
+        console.log(filmElement);
+        table.insertAdjacentHTML('afterbegin', filmElement);
+>>>>>>> f431092 (lab04)
     }
 }
 
 
+<<<<<<< HEAD
 function clearTable() {
     document.querySelector('#film-table').innerHTML = '';
 }
@@ -207,6 +243,8 @@ function sidebarUnclick() {
     clicked.className = "nav-link text-white";
 }
 
+=======
+>>>>>>> f431092 (lab04)
 /*
 Id: 1, Title: Pulp Fiction, Favorite: true, Watch date: March 10, 2022, Score: 5
 Id: 2, Title: 21 Grams, Favorite: true, Watch date: March 17, 2022, Score: 4
@@ -215,6 +253,7 @@ Id: 4, Title: Matrix, Favorite: false, Watch date: <not defined>, Score: <not as
 Id: 5, Title: Shrek, Favorite: false, Watch date: March 21, 2022, Score: 3
 */
 
+<<<<<<< HEAD
 function sidebarInit(filmLibrary) {
     let pageTitle = document.getElementById('page-title');
 
@@ -286,3 +325,10 @@ function main() {
 }
 
 main();
+=======
+let filmLibrary = new FilmLibrary;
+filmLibrary.init();
+
+const films = filmLibrary.getAll();
+populateTable(films);
+>>>>>>> f431092 (lab04)
