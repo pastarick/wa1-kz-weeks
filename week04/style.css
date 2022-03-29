@@ -20,7 +20,7 @@ aside, footer {
   margin-top: 1em;
 }
 /* all the aside elements will have bg blue */
-aside {
+my-aside {
     display: flex;
     flex-direction: column;
     background-color: aliceblue;
