@@ -1,0 +1,47 @@
+navbar {
+    height: 55px;
+}
+
+#sidebar {
+    min-height: calc(100vh - 56px); /* 56 is navbar height +1*/
+}
+
+#page-logo {
+    width: 16px;
+    height: 16px;
+    margin-left: 17%;
+    margin-right: 4%;
+    margin-bottom: 3%;
+}
+
+#search-box {
+}
+
+#search-button {
+    border-color: white;
+    color: white;
+}
+
+#user-logo {
+    width: 30px;
+    height: 30px;
+    margin-right: 2%;
+}
+
+#c1 {
+    padding-left: 0;
+}
+
+.fa-star {
+    color: darkblue;
+}
+
+.checked {
+    color: orange;
+}
+
+.btn-floating {
+    width: 40px;
+    height: 40px;
+    border-radius: 50%;
+}
