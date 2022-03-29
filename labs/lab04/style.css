@@ -16,27 +16,13 @@ navbar {
 }
 
 #sidebar {
-    min-height: 100vh;   
-}
-
-#sidebar-wrapper {
-    padding-right: 0;
-    
-}
-
-#main-wrapper {
-    padding: auto;
+    min-height: 100vh;
 }
 
 #user-logo {
     width: 30px;
     height: 30px;
     margin-right: 2%;
-
-    cursor: pointer;
-
-    cursor: pointer;
-
 }
 
 #c1 {
@@ -55,10 +41,4 @@ navbar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-
-}
-
-i {
-    cursor: pointer;
-
 }
