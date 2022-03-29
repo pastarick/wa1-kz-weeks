@@ -1,16 +1,3 @@
-<<<<<<< HEAD
-aside, footer {
-  background-color: aliceblue;
-}
-
-.intro {
-  color:dimgray;
-  font-style: italic;
-}
-
-#bigger-margin-top {
-  margin-top: 1em;
-=======
 /* all the aside elements will have bg blue */
 aside {
     display: flex;
@@ -43,5 +30,4 @@ footer {
 
 html {
     font-family: Arial, Helvetica, sans-serif;
->>>>>>> ffd9189 (Tuesday week 4)
 }
