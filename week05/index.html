@@ -12,11 +12,10 @@
     <!-- Custom CSS-->
     <link rel="stylesheet" href="custom.css">
 
-    <!-- JavaScript -->
-    <script defer src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
-
+    <!-- DayJS -->
     <script defer src="https://unpkg.com/dayjs@1.8.21/dayjs.min.js"></script>
 
+    <!-- JS -->
     <script defer src="app.js"></script>
 
     <!-- Other meta tags -->
@@ -52,8 +51,28 @@
                 <th scope="col">Actions</th>
               </tr>
             </thead>
-            <!-- give an id to tbody instead of table because it is more precise => it will be quicker to add elements -->
-            <tbody id="exam-table">
+            <tbody>
+              <tr>
+                <td>01/02/2022</td>
+                <td>Computer Architecture</td>
+                <td>10</td>
+                <td>21</td>
+                <td><button class="btn btn-danger">X</button></td>
+              </tr>
+              <tr>
+                <td>06/02/2022</td>
+                <td>Computer Network Technologies and Services</td>
+                <td>6</td>
+                <td>26</td>
+                <td><button class="btn btn-danger">X</button></td>
+              </tr>
+              <tr>
+                <td>15/02/2022</td>
+                <td>Data Science and Database Technology</td>
+                <td>8</td>
+                <td>30L</td>
+                <td><button class="btn btn-danger">X</button></td>
+              </tr>
               <tr>
                 <td><input class="form-control" type="date"></td>
                 <td><input class="form-control" type="text"></td>
@@ -72,6 +91,9 @@
         <p class="col mt-3">&COPY; 2022 - Web Applications I (K-Z)</p>
       </div>
     </footer>
+
+    <!-- Optional JavaScript -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
 
   </body>
 </html>
