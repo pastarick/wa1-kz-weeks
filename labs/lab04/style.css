@@ -16,6 +16,7 @@ navbar {
 }
 
 #sidebar {
+<<<<<<< HEAD
     min-height: 100vh;   
 }
 
@@ -26,13 +27,19 @@ navbar {
 
 #main-wrapper {
     padding: auto;
+=======
+    min-height: 100vh;
+>>>>>>> f431092 (lab04)
 }
 
 #user-logo {
     width: 30px;
     height: 30px;
     margin-right: 2%;
+<<<<<<< HEAD
     cursor: pointer;
+=======
+>>>>>>> f431092 (lab04)
 }
 
 #c1 {
@@ -51,8 +58,12 @@ navbar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
+<<<<<<< HEAD
 }
 
 i {
     cursor: pointer;
 }
+=======
+}
+>>>>>>> f431092 (lab04)
