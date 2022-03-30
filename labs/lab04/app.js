@@ -10,6 +10,7 @@ function Film(id, title, favourite, date = undefined, rating = undefined) {
     this.favourite = favourite || false;
     this.date = date ? dayjs(date) : date;
     this.rating = rating;
+    this.library = undefined;
 
     this.toString = () => {
         let s = `\nFilm ${this.id}:\n`
@@ -40,6 +41,7 @@ function FilmLibrary() {
                     new Film(5, "Shrek", false, "2022-03-21", 3),
         ];
         for (const film of films) {
+            film.library = this;
             this.addNewFilm(film);
         }
     }
@@ -130,6 +132,9 @@ function createFilmTableRow2(film) {
 
     s += `</td>
     </tr>`;
+
+
+
     return s;
 }
 
@@ -184,9 +189,10 @@ function populateTable(films) {
     const table = document.getElementById('film-table');
 
     for (const film of films) {
+        // const filmElement = createFilmTableRow2(film);
+        // table.insertAdjacentHTML('afterbegin', filmElement);
         const filmElement = createFilmTableRow(film);
-        console.log(filmElement);
-        table.insertAdjacentHTML('afterbegin', filmElement);
+        table.insertAdjacentElement('afterbegin', filmElement);
     }
 }
 
