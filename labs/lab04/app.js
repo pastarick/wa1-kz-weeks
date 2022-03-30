@@ -34,10 +34,10 @@ function FilmLibrary() {
             this.list.push(...film_list)
         }
         let films = [new Film(1, "Pulp Fiction", true, "2022-03-10", 5),
-                    new Film(2, "21 Grams", true, "2022-03-17", 4),
-                    new Film(3, "Star Wars"),
-                    new Film(4, "Matrix"),
-                    new Film(5, "Shrek", false, "2022-03-21", 3),
+            new Film(2, "21 Grams", true, "2022-03-17", 4),
+            new Film(3, "Star Wars"),
+            new Film(4, "Matrix"),
+            new Film(5, "Shrek", false, "2022-03-21", 3),
         ];
         for (const film of films) {
             this.addNewFilm(film);
@@ -81,8 +81,26 @@ function FilmLibrary() {
         return this.list.toString();
     }
 
+    /* Sidebar Methods */
+
     this.getAll = () => {
         return this.list;
+    }
+
+    this.getFavourite = () => {
+        return this.list.filter(f => f.favourite);
+    }
+
+    this.getBestRated = () => {
+        return this.list.filter(f => f.rating == 5);
+    }
+
+    this.getSeenLastMonth = () => {
+        return this.list.filter(f => f.date && f.date.isAfter(dayjs().subtract(30, 'day')));
+    }
+
+    this.getUnseen = () => {
+        return this.list.filter(f => !f.date);
     }
 }
 
@@ -121,6 +139,16 @@ function populateTable(films) {
 }
 
 
+function clearTable() {
+    document.querySelector('#film-table').innerHTML = '';
+}
+
+
+function sidebarUnclick() {
+    let clicked = document.querySelector(".nav-link.active");
+    clicked.className = "nav-link text-white";
+}
+
 /*
 Id: 1, Title: Pulp Fiction, Favorite: true, Watch date: March 10, 2022, Score: 5
 Id: 2, Title: 21 Grams, Favorite: true, Watch date: March 17, 2022, Score: 4
@@ -129,8 +157,74 @@ Id: 4, Title: Matrix, Favorite: false, Watch date: <not defined>, Score: <not as
 Id: 5, Title: Shrek, Favorite: false, Watch date: March 21, 2022, Score: 3
 */
 
-let filmLibrary = new FilmLibrary;
-filmLibrary.init();
+function sidebarInit(filmLibrary) {
+    let pageTitle = document.getElementById('page-title');
 
-const films = filmLibrary.getAll();
-populateTable(films);
+    // 1. All
+    let allBtn = document.getElementById('sidebar-all');
+    allBtn.addEventListener('click', e => {
+        clearTable();
+        // set current view to All
+        pageTitle.innerText = 'All';
+        const films = filmLibrary.getAll();
+        populateTable(films);
+        sidebarUnclick();
+        allBtn.className = "nav-link active";
+    });
+
+    let favBtn = document.getElementById('sidebar-fav');
+    favBtn.addEventListener('click', e => {
+        clearTable();
+        // set current view to Favorite
+        pageTitle.innerText = 'Favorite';
+        const films = filmLibrary.getFavourite();
+        populateTable(films);
+        sidebarUnclick();
+        favBtn.className = "nav-link active";
+    });
+
+    let bestBtn = document.getElementById('sidebar-best');
+    bestBtn.addEventListener('click', e => {
+        clearTable();
+        // set current view to Favorite
+        pageTitle.innerText = 'Best rated';
+        const films = filmLibrary.getBestRated();
+        populateTable(films);
+        sidebarUnclick();
+        bestBtn.className = "nav-link active";
+    });
+
+    let lastSeenBtn = document.getElementById('sidebar-last-seen');
+    lastSeenBtn.addEventListener('click', e => {
+        clearTable();
+        // set current view to Favorite
+        pageTitle.innerText = 'Seen last month';
+        const films = filmLibrary.getSeenLastMonth();
+        populateTable(films);
+        sidebarUnclick();
+        lastSeenBtn.className = "nav-link active";
+    });
+
+    let unseenBtn = document.getElementById('sidebar-unseen');
+    unseenBtn.addEventListener('click', e => {
+        clearTable();
+        // set current view to Favorite
+        pageTitle.innerText = 'Unseen';
+        const films = filmLibrary.getUnseen();
+        populateTable(films);
+        sidebarUnclick();
+        unseenBtn.className = "nav-link active";
+    });
+}
+
+function main() {
+    let filmLibrary = new FilmLibrary;
+    filmLibrary.init();
+
+    sidebarInit(filmLibrary);
+
+    const films = filmLibrary.getAll();
+    populateTable(films);
+}
+
+main();
