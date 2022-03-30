@@ -39,10 +39,14 @@ function FilmLibrary() {
         }
         let films = [new Film(1, "Pulp Fiction", true, "2022-03-10", 5),
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b152e86 (Point 2)
             new Film(2, "21 Grams", true, "2022-03-17", 4),
             new Film(3, "Star Wars"),
             new Film(4, "Matrix"),
             new Film(5, "Shrek", false, "2022-03-21", 3),
+<<<<<<< HEAD
         ];
         for (const film of films) {
             film.library = this;
@@ -51,6 +55,8 @@ function FilmLibrary() {
                     new Film(3, "Star Wars"),
                     new Film(4, "Matrix"),
                     new Film(5, "Shrek", false, "2022-03-21", 3),
+=======
+>>>>>>> b152e86 (Point 2)
         ];
         for (const film of films) {
 >>>>>>> f431092 (lab04)
@@ -96,6 +102,7 @@ function FilmLibrary() {
     }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
     /* Sidebar Methods */
 
     this.getAll = () => {
@@ -128,8 +135,28 @@ function createFilmTableRow2(film) {
             </svg>
         ${film.title}</td>
 =======
+=======
+    /* Sidebar Methods */
+
+>>>>>>> b152e86 (Point 2)
     this.getAll = () => {
         return this.list;
+    }
+
+    this.getFavourite = () => {
+        return this.list.filter(f => f.favourite);
+    }
+
+    this.getBestRated = () => {
+        return this.list.filter(f => f.rating == 5);
+    }
+
+    this.getSeenLastMonth = () => {
+        return this.list.filter(f => f.date && f.date.isAfter(dayjs().subtract(30, 'day')));
+    }
+
+    this.getUnseen = () => {
+        return this.list.filter(f => !f.date);
     }
 }
 
@@ -233,6 +260,9 @@ function populateTable(films) {
 
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b152e86 (Point 2)
 function clearTable() {
     document.querySelector('#film-table').innerHTML = '';
 }
@@ -243,8 +273,11 @@ function sidebarUnclick() {
     clicked.className = "nav-link text-white";
 }
 
+<<<<<<< HEAD
 =======
 >>>>>>> f431092 (lab04)
+=======
+>>>>>>> b152e86 (Point 2)
 /*
 Id: 1, Title: Pulp Fiction, Favorite: true, Watch date: March 10, 2022, Score: 5
 Id: 2, Title: 21 Grams, Favorite: true, Watch date: March 17, 2022, Score: 4
@@ -254,6 +287,9 @@ Id: 5, Title: Shrek, Favorite: false, Watch date: March 21, 2022, Score: 3
 */
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> b152e86 (Point 2)
 function sidebarInit(filmLibrary) {
     let pageTitle = document.getElementById('page-title');
 
@@ -323,6 +359,7 @@ function main() {
     const films = filmLibrary.getAll();
     populateTable(films);
 }
+<<<<<<< HEAD
 
 main();
 =======
@@ -332,3 +369,7 @@ filmLibrary.init();
 const films = filmLibrary.getAll();
 populateTable(films);
 >>>>>>> f431092 (lab04)
+=======
+
+main();
+>>>>>>> b152e86 (Point 2)
