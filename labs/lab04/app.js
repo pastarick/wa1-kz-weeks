@@ -10,6 +10,7 @@ function Film(id, title, favourite, date = undefined, rating = undefined) {
     this.favourite = favourite || false;
     this.date = date ? dayjs(date) : date;
     this.rating = rating;
+    this.library = undefined;
 
     this.toString = () => {
         let s = `\nFilm ${this.id}:\n`
@@ -40,6 +41,7 @@ function FilmLibrary() {
             new Film(5, "Shrek", false, "2022-03-21", 3),
         ];
         for (const film of films) {
+            film.library = this;
             this.addNewFilm(film);
         }
     }
@@ -104,9 +106,14 @@ function FilmLibrary() {
     }
 }
 
-function createFilmTableRow(film) {
+function createFilmTableRow2(film) {
     let s = `<tr>
-        <td>${film.title}</td>
+        <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-bottom:1%" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+            </svg>
+        ${film.title}</td>
         <td><input class="form-check-input" type="checkbox" value="" 
             id="flexCheckDefault" ${film.favourite ? 'checked' : ''}>
             <label class="form-check-label" for="flexCheckDefault">
@@ -125,16 +132,67 @@ function createFilmTableRow(film) {
 
     s += `</td>
     </tr>`;
+
+
+
     return s;
 }
+
+function createFilmTableRow(film) {
+    const tr = document.createElement('tr');
+
+    const tdTitle = document.createElement('td');
+    tdTitle.innerText = film.title;
+    let trashIcon = document.createElement('i');
+    trashIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-bottom:1%; margin-right:1%" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>`;
+
+    trashIcon.addEventListener('click', e => {
+        tr.remove();
+        film.library.deleteFilm(film.id);
+    });
+
+    tdTitle.insertAdjacentElement('afterbegin', trashIcon);
+    tr.appendChild(tdTitle);
+
+    const tdFav = document.createElement('td');
+    tdFav.innerHTML = `<input class="form-check-input" type="checkbox" value="" 
+                        id="flexCheckDefault" ${film.favourite ? 'checked' : ''}>
+                        <label class="form-check-label" for="flexCheckDefault">
+                        Favorite
+                        </label>`;
+    tr.appendChild(tdFav);
+
+    const tdDate = document.createElement('td');
+    tdDate.innerText = film.date? film.date.format('MMM D, YYYY') : '';
+    tr.appendChild(tdDate);
+
+    const tdScore = document.createElement('td');
+    let s = '';
+    for (let i = 0; i < 5; i++) {
+        if (i < film.rating) {
+            s += '<span class="fa fa-star checked"></span>';
+        } else {
+            s += '<span class="fa fa-star"></span>';
+        }
+    }
+    tdScore.innerHTML = s;
+    tr.appendChild(tdScore);
+
+    return tr;
+}
+
 
 function populateTable(films) {
     const table = document.getElementById('film-table');
 
     for (const film of films) {
+        // const filmElement = createFilmTableRow2(film);
+        // table.insertAdjacentHTML('afterbegin', filmElement);
         const filmElement = createFilmTableRow(film);
-        console.log(filmElement);
-        table.insertAdjacentHTML('afterbegin', filmElement);
+        table.insertAdjacentElement('afterbegin', filmElement);
     }
 }
 
