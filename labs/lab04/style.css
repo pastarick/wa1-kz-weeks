@@ -42,3 +42,7 @@ navbar {
     height: 40px;
     border-radius: 50%;
 }
+
+i {
+    cursor: pointer;
+}
