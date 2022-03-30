@@ -11,9 +11,13 @@ function Film(id, title, favourite, date = undefined, rating = undefined) {
     this.date = date ? dayjs(date) : date;
     this.rating = rating;
 <<<<<<< HEAD
+<<<<<<< HEAD
     this.library = undefined;
 =======
 >>>>>>> f431092 (lab04)
+=======
+    this.library = undefined;
+>>>>>>> 4e871ee (Finished lab04)
 
     this.toString = () => {
         let s = `\nFilm ${this.id}:\n`
@@ -50,6 +54,7 @@ function FilmLibrary() {
         ];
         for (const film of films) {
             film.library = this;
+<<<<<<< HEAD
 =======
                     new Film(2, "21 Grams", true, "2022-03-17", 4),
                     new Film(3, "Star Wars"),
@@ -60,6 +65,8 @@ function FilmLibrary() {
         ];
         for (const film of films) {
 >>>>>>> f431092 (lab04)
+=======
+>>>>>>> 4e871ee (Finished lab04)
             this.addNewFilm(film);
         }
     }
@@ -160,10 +167,19 @@ function createFilmTableRow2(film) {
     }
 }
 
-function createFilmTableRow(film) {
+function createFilmTableRow2(film) {
     let s = `<tr>
+<<<<<<< HEAD
         <td>${film.title}</td>
 >>>>>>> f431092 (lab04)
+=======
+        <td>
+            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-bottom:1%" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+            </svg>
+        ${film.title}</td>
+>>>>>>> 4e871ee (Finished lab04)
         <td><input class="form-check-input" type="checkbox" value="" 
             id="flexCheckDefault" ${film.favourite ? 'checked' : ''}>
             <label class="form-check-label" for="flexCheckDefault">
@@ -182,6 +198,7 @@ function createFilmTableRow(film) {
 
     s += `</td>
     </tr>`;
+<<<<<<< HEAD
 <<<<<<< HEAD
 
 
@@ -241,10 +258,66 @@ function createFilmTableRow(film) {
 }
 
 >>>>>>> f431092 (lab04)
+=======
+
+
+
+    return s;
+}
+
+function createFilmTableRow(film) {
+    const tr = document.createElement('tr');
+
+    const tdTitle = document.createElement('td');
+    tdTitle.innerText = film.title;
+    let trashIcon = document.createElement('i');
+    trashIcon.innerHTML = `<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" style="margin-bottom:1%; margin-right:1%" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z"/>
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z"/>
+                            </svg>`;
+
+    trashIcon.addEventListener('click', e => {
+        tr.remove();
+        film.library.deleteFilm(film.id);
+    });
+
+    tdTitle.insertAdjacentElement('afterbegin', trashIcon);
+    tr.appendChild(tdTitle);
+
+    const tdFav = document.createElement('td');
+    tdFav.innerHTML = `<input class="form-check-input" type="checkbox" value="" 
+                        id="flexCheckDefault" ${film.favourite ? 'checked' : ''}>
+                        <label class="form-check-label" for="flexCheckDefault">
+                        Favorite
+                        </label>`;
+    tr.appendChild(tdFav);
+
+    const tdDate = document.createElement('td');
+    tdDate.innerText = film.date? film.date.format('MMM D, YYYY') : '';
+    tr.appendChild(tdDate);
+
+    const tdScore = document.createElement('td');
+    let s = '';
+    for (let i = 0; i < 5; i++) {
+        if (i < film.rating) {
+            s += '<span class="fa fa-star checked"></span>';
+        } else {
+            s += '<span class="fa fa-star"></span>';
+        }
+    }
+    tdScore.innerHTML = s;
+    tr.appendChild(tdScore);
+
+    return tr;
+}
+
+
+>>>>>>> 4e871ee (Finished lab04)
 function populateTable(films) {
     const table = document.getElementById('film-table');
 
     for (const film of films) {
+<<<<<<< HEAD
 <<<<<<< HEAD
         // const filmElement = createFilmTableRow2(film);
         // table.insertAdjacentHTML('afterbegin', filmElement);
@@ -255,6 +328,12 @@ function populateTable(films) {
         console.log(filmElement);
         table.insertAdjacentHTML('afterbegin', filmElement);
 >>>>>>> f431092 (lab04)
+=======
+        // const filmElement = createFilmTableRow2(film);
+        // table.insertAdjacentHTML('afterbegin', filmElement);
+        const filmElement = createFilmTableRow(film);
+        table.insertAdjacentElement('afterbegin', filmElement);
+>>>>>>> 4e871ee (Finished lab04)
     }
 }
 
