@@ -17,6 +17,9 @@ navbar {
 
 #sidebar {
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> 00260a1 (Lab4)
     min-height: 100vh;   
 }
 
@@ -27,9 +30,12 @@ navbar {
 
 #main-wrapper {
     padding: auto;
+<<<<<<< HEAD
 =======
     min-height: 100vh;
 >>>>>>> f431092 (lab04)
+=======
+>>>>>>> 00260a1 (Lab4)
 }
 
 #user-logo {
@@ -37,9 +43,13 @@ navbar {
     height: 30px;
     margin-right: 2%;
 <<<<<<< HEAD
+<<<<<<< HEAD
     cursor: pointer;
 =======
 >>>>>>> f431092 (lab04)
+=======
+    cursor: pointer;
+>>>>>>> 00260a1 (Lab4)
 }
 
 #c1 {
