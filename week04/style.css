@@ -5,6 +5,9 @@ aside {
     background-color: aliceblue;
     color: black;
 }
+aside, footer {
+  background-color: aliceblue;
+}
 
 /* define a class: all the elements with class called colored-text will have this color */
 .intro {
@@ -14,6 +17,24 @@ aside {
 
 /* define an id: the element with an id called bigger-margin-top will have this style */
 #bigger-margin-top {
+  margin-top: 1em;
+}
+/* all the aside elements will have bg blue */
+my-aside {
+    display: flex;
+    flex-direction: column;
+    background-color: aliceblue;
+    color: black;
+}
+
+/* define a class: all the elements with class called colored-text will have this color */
+.intro {
+    color: dimgray;
+    font-style: italic;
+}
+
+/* define an id: the element with an id called bigger-margin-top will have this style */
+#my-bigger-margin-top {
     /* 1em means relative to font size*/
     margin-top: 1em;
     padding: 5px;
