@@ -16,10 +16,6 @@ navbar {
 }
 
 #sidebar {
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 00260a1 (Lab4)
     min-height: 100vh;   
 }
 
@@ -30,26 +26,17 @@ navbar {
 
 #main-wrapper {
     padding: auto;
-<<<<<<< HEAD
-=======
-    min-height: 100vh;
->>>>>>> f431092 (lab04)
-=======
->>>>>>> 00260a1 (Lab4)
 }
 
 #user-logo {
     width: 30px;
     height: 30px;
     margin-right: 2%;
-<<<<<<< HEAD
-<<<<<<< HEAD
+
     cursor: pointer;
-=======
->>>>>>> f431092 (lab04)
-=======
+
     cursor: pointer;
->>>>>>> 00260a1 (Lab4)
+
 }
 
 #c1 {
@@ -68,19 +55,10 @@ navbar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
->>>>>>> 4e871ee (Finished lab04)
+
 }
 
 i {
     cursor: pointer;
-<<<<<<< HEAD
+
 }
-=======
-}
->>>>>>> f431092 (lab04)
-=======
-}
->>>>>>> 4e871ee (Finished lab04)
