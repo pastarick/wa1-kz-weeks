@@ -48,7 +48,7 @@ function FilmLibrary() {
 
 
     this.addNewFilm = (film) => {
-        if (film != null && film != undefined) {
+        if (film != null) {
             if (this.list.filter(f => f.id === film.id) == 0) {
                 this.list.push(film);
             }
@@ -283,10 +283,7 @@ function main() {
 
 const films = filmLibrary.getAll();
 populateTable(films);
-    sidebarInit(filmLibrary);
-
-    const films = filmLibrary.getAll();
-    populateTable(films);
+sidebarInit(filmLibrary);
 }
 
 main();
