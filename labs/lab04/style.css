@@ -32,11 +32,7 @@ navbar {
     width: 30px;
     height: 30px;
     margin-right: 2%;
-
     cursor: pointer;
-
-    cursor: pointer;
-
 }
 
 #c1 {
@@ -55,10 +51,8 @@ navbar {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-
 }
 
 i {
     cursor: pointer;
-
 }
