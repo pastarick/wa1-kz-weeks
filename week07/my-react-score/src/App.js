@@ -2,7 +2,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 import {Container, Row, Col} from 'react-bootstrap';
 import dayjs from 'dayjs';
-import ExamScores from './components/ExamComponents';
+import {ExamScores} from './components/ExamComponents';
 import {useState} from "react";
 
 const fakeExams = [
@@ -22,18 +22,6 @@ const fakeExams = [
 
 function App() {
     const [exams, setExams] = useState(fakeExams);
-
-    // here we have the state and setExams -> here we create the delete function
-
-    const deleteExam = (courseCode) => {
-        // NB: we need to return a new object: filter does this
-        setExams(list => list.filter(e => e.code !== courseCode));
-    }
-
-    const addExam = (exam) => {
-        setExams(list => list.concat(exam));
-    }
-
     return (
         <Container className='App'>
             <Row>
@@ -42,7 +30,7 @@ function App() {
                 </Col>
             </Row>
             <Row>
-                <ExamScores exams={exams} deleteExam={deleteExam} addExam={addExam}></ExamScores>
+                <ExamScores exams={exams}></ExamScores>
             </Row>
         </Container>
     );
