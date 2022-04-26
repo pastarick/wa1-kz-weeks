@@ -3,7 +3,7 @@ import './App.css';
 import {Container, Row, Col} from 'react-bootstrap';
 import dayjs from 'dayjs';
 import ExamTable from './components/ExamTable';
-import { useState } from 'react';
+import {useState} from 'react';
 
 const fakeExams = [
   {code: '01TYMOV', name: 'Information systems security', score: 30, date: dayjs('2022-02-01')},
@@ -22,19 +22,31 @@ function App() {
     setExams(oldExams => [...oldExams, exam]);
   }
 
+  const updateExam = (exam) => {
+    setExams(oldExams => {
+      return oldExams.map(ex => {
+        if (ex.code === exam.code) {
+          return {code: exam.code, name: exam.name, score: exam.score, date: exam.date}
+        } else {
+          return ex;
+        }
+      })
+    })
+  }
+
   return (
-    <Container className='App'>
-      <Row>
-        <Col>
-          <h1>My Exams ({exams.length})</h1>
-        </Col>
-      </Row>
-      <Row>
-        <Col>
-          <ExamTable exams={exams} deleteExam={deleteExam} addExam={addExam}></ExamTable>
-        </Col>
-      </Row>
-    </Container>
+      <Container className='App'>
+        <Row>
+          <Col>
+            <h1>My Exams ({exams.length})</h1>
+          </Col>
+        </Row>
+        <Row>
+          <Col>
+            <ExamTable exams={exams} deleteExam={deleteExam} addExam={addExam} editExam={updateExam}></ExamTable>
+          </Col>
+        </Row>
+      </Container>
   );
 }
 
