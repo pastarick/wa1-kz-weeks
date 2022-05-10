@@ -14,7 +14,12 @@ exports.listExams = () => {
       if(err)
         reject(err);
       else {
-        const exams = rows.map(row => new Exam(row.code, row.name, row.CFU, row.datepassed, row.score, (row.laude ? true : false)));
+        const exams = rows.map(row =>
+            new Exam(row.code,
+                     row.name,
+                     row.CFU, row.datepassed,
+                     row.score,
+                     !!row.laude /* double ! = cast to boolean */));
         resolve(exams);
       }
     });
