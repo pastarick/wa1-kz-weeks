@@ -1,46 +1,52 @@
-'use strict';
+"use strict";
 
 const express = require('express');
-const res = require('express/lib/response');
 const morgan = require('morgan');
 const dao = require('./dao');
+const {response} = require("express");
 
-// init express
+// Init express
 const app = express();
-const port = 3001;
+const PORT = 3001; // because react uses 3000
 
-// set up the middlewares
-app.use(morgan('dev'));
-app.use(express.json());
 
-/*** APIs ***/
+// Set up the middlewares
+app.use(morgan('dev')); // for logging
+app.use(express.json()); // for serializing and deserializing the body
 
-// GET /api/exams
+/*************** APIs ***************/
+
+//GET all exams
 app.get('/api/exams', (request, response) => {
   dao.listExams()
-  .then(exams => response.json(exams))
-  .catch(() => response.status(500).end());
+      .then(exams => response.json(exams.map(e => {
+        e.date = e.date.format('YYYY-MM-DD');
+        return e;
+      })))// resolve promise
+      .catch(() => response.status(500).end()); // reject promise
 });
 
-// PUT /api/exams/<code>
-/* ADD VALIDATION */
-app.put('/api/exams/:code', async (req, res) => {
+//PUT a new exam
+app.put('/api/exams/:code', async (res, req) => {
   const examToUpdate = req.body;
 
-  if(req.params.code === req.body.code) {
+  // verify that the code in the body matched the code in the URL
+  if(req.params.code === examToUpdate.code) {
     try {
       await dao.updateExam(examToUpdate);
       res.status(200).end();
     }
-    catch(err) {
-      console.error(err);
-      res.status(503).json({error: `Database error while updating ${examToUpdate.code}.`});
+    catch(error) {
+      res.status(503).json({error: `Database error while updating ${examToUpdate.code}`}).end();
     }
   }
   else {
-    res.status(503).json({error: `Wrong exam code in the request body.`});
+    res.status(503).json({error: `Wrong code in the request body (${examToUpdate.code})`})
   }
-});
 
-// activate the server
-app.listen(port, () => console.log(`Server started at http://localhost:${port}.`));
+  req.params.code;
+})
+
+
+// Start the server
+app.listen(PORT, () => console.log(`Server started at http://localhost:${PORT}`));
