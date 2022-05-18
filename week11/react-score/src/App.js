@@ -17,7 +17,7 @@ function App() {
       setExams(exams);
     };
     getExams();
-  }, []);
+  }, []); // Empty array <=> just at the beginning because at this moment we don't have the add implemented
 
   const deleteExam = (courseCode) => {
     setExams((exs) => exs.filter(ex => ex.code !== courseCode));

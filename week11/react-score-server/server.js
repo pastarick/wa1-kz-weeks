@@ -16,8 +16,9 @@ app.use(express.json()); // for parsing json request body
 const corsOptions = {
   origin: 'http://localhost:3000',
   optionsSuccessStatus: 200
-}
+};
 
+// Restrict CORS to localhost:3000
 app.use(cors(corsOptions));
 
 /*** APIs ***/
