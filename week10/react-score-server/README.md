@@ -127,6 +127,6 @@ Example: `/api/exams/01abc`
 Request body: _None_
 
 Response: `204 No Content` (success) or `503 Service Unavailable`
-(generic error) or `404 Resource Not Found`
+(generic error) or `404 Not Found`
 
 Response body: _None_
