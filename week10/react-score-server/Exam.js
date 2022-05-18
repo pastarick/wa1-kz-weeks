@@ -18,5 +18,7 @@ function Exam (code, name, credits, date, score, laude = false) {
     this.score = score;
     this.laude = laude;
 }
-
+// here we give a name to the exported Exam
 exports.Exam = Exam;
+// here we put the Exam module among the exported modules
+exports.modules = {Exam};
