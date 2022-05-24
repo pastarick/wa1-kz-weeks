@@ -9,11 +9,11 @@ Hereafter, we report the designed HTTP APIs, also implemented in the project.
 
 URL: `/api/exams`
 
-HTTP Method: GET
+HTTP Method: `GET`
 
 Description: Get all the exams that the student already passed.
 
-Request body: _None_
+Request body: `None`
 
 Response: `200 OK` (success) or `500 Internal Server Error` (generic error).
 
@@ -44,7 +44,7 @@ Response body:
 
 URL: `/api/exams`
 
-HTTP Method: POST
+HTTP Method: `POST`
 
 Description: Add a new passed exam.
 
@@ -60,13 +60,13 @@ Request body:
 
 Response: `201 Created` (success) or `503 Service Unavailable` (generic error) or `422 Unprocessable Entity`.
 
-Response body: _None_.
+Response body: `None`.
 
 ### __Update an exam__
 
 URL: `/api/exams/<code>`
 
-HTTP Method: PUT
+HTTP Method: `PUT`
 
 Description: Update some information of an exam.
 
@@ -84,20 +84,20 @@ Request body:
 
 Response: `200 OK` (success) or `503 Service Unavailable` (generic error) or `422 Unprocessable Entity`.
 
-Response body: _None_.
+Response body: `None`.
 
 ### __Delete an existing exam__
 
 URL: `/api/exams/<code>`
 
-HTTP Method: DELETE
+HTTP Method: `DELETE`
 
 Description: Delete a passed exam given its code.
 
 Example: `/api/exams/01abc`
 
-Request body: _None_.
+Request body: `None`.
 
 Response: `204` (success) or `503 Service Unavailable` (generic error) or `404`.
 
-Response body: _None_.
+Response body: `None`.
