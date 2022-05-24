@@ -1,17 +1,17 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import './App.css';
 
-import { useEffect, useState } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import {useEffect, useState} from 'react';
+import {BrowserRouter, Routes, Route} from 'react-router-dom';
 
-import { ExamRoute, FormRoute, EditRoute, DefaultRoute } from './components/ExamViews';
+import {ExamRoute, FormRoute, EditRoute, DefaultRoute} from './components/ExamViews';
 
 import API from './API';
 
 function App() {
   const [exams, setExams] = useState([]);
 
-  const getExams = async() => {
+  const getExams = async () => {
     const exams = await API.getAllExams();
     setExams(exams);
   };
@@ -21,32 +21,37 @@ function App() {
   }, []);
 
   const deleteExam = (courseCode) => {
-    setExams(oldExams => {
+    // setExams((exs) => exs.filter(ex => ex.code !== courseCode));
+    setExams((oldExams) => {
       return oldExams.map(ex => {
-        if(ex.code === courseCode)
-          return {...ex, status: 'deleted'};
-        else
+        if (ex.code === courseCode) {
+          return {...ex, status: 'deleted'}
+        } else {
           return ex;
+        }
       });
     });
-
-    API.deleteExam(courseCode).then(() => getExams());
-    //.catch(...)
+    API.deleteExam(courseCode)
+        .then(() => getExams());
+    // .catch(...);
   }
 
   const addExam = (exam) => {
+    // We need to set this change as temporary
+    // We can leverage css
     exam.status = 'added';
     setExams(oldExams => [...oldExams, exam]);
 
-    API.addExam(exam).then(()=> getExams());
-      //.catch(...);
+    API.addExam(exam)
+        .then(() => getExams());
+    //.catch(...);
   }
 
-  // TO UPDATE TO WORK WITH THE SERVER
+  // NEED TO INTEGRATE WITH APIs
   const updateExam = (exam) => {
     setExams(oldExams => {
       return oldExams.map(ex => {
-        if(exam.code === ex.code)
+        if (exam.code === ex.code)
           return {code: exam.code, name: exam.name, score: exam.score, date: exam.date};
         else
           return ex;
@@ -55,16 +60,16 @@ function App() {
   }
 
   return (
-    <BrowserRouter>
-      <Routes>
-        <Route path='/' element={ <ExamRoute exams={exams} deleteExam={deleteExam}/> } />
-        <Route path='*' element={ <DefaultRoute/> } />
-        <Route path="/add" element={ <FormRoute addExam={addExam} /> } />
-        <Route path="/edit" element={ /* if there is no location.state we can add a new exam */
-          <EditRoute editExam={updateExam} addExam={addExam} />
-        } />
-      </Routes>
-    </BrowserRouter>
+      <BrowserRouter>
+        <Routes>
+          <Route path='/' element={<ExamRoute exams={exams} deleteExam={deleteExam}/>}/>
+          <Route path='*' element={<DefaultRoute/>}/>
+          <Route path="/add" element={<FormRoute addExam={addExam}/>}/>
+          <Route path="/edit" element={ /* if there is no location.state we can add a new exam */
+            <EditRoute editExam={updateExam} addExam={addExam}/>
+          }/>
+        </Routes>
+      </BrowserRouter>
   );
 }
 

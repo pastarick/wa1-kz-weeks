@@ -33,7 +33,7 @@ app.get('/api/exams', (request, response) => {
 app.post('/api/exams', [
   check('code').isLength({min: 7, max: 7}),
   check('score').isInt({min: 18, max: 31}),
-  check('date').isDate({format: 'YYYY-MM-DD', strictMode: true})
+  check('date').isDate({format: 'YYYY-MM-DD', strictMode: true}) /*ONLY DATE FORMAT ACCEPTED BY THE SERVER*/
 ], async (req, res) => {
   const errors = validationResult(req);
   if (!errors.isEmpty()) {

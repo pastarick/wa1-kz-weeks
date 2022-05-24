@@ -30,8 +30,7 @@ function ExamTable(props) {
 }
 
 function ExamRow(props) {
-  let statusClass = null;
-
+  let statusClass = null; // a null prop is not rendered
   switch(props.exam.status) {
     case 'added':
       statusClass = 'table-success';

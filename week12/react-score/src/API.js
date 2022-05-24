@@ -1,37 +1,46 @@
 import Exam from './Exam';
 
-const SERVER_URL = 'http://localhost:3001';
+const SERVER_URL = "http://localhost:3001";
 
 const getAllExams = async () => {
-  const response = await fetch(SERVER_URL + '/api/exams');
+  const response = await fetch(`${SERVER_URL}/api/exams`);
   const examsJson = await response.json();
-  if(response.ok) {
+  if (response.ok) {
     return examsJson.map(ex => new Exam(ex.code, ex.name, ex.credits, ex.date, (ex.laude ? ex.score + 'L' : ex.score)));
-  }
-  else
+  } else
     throw examsJson;
 };
 
 const addExam = async (exam) => {
-  // handling the laude
-  if(exam.score === 31) {
+  /* We need to modify the passed exam object, i.e. set the laude parameter
+  * */
+  if (exam.score === 31) {
     exam.score = 30;
     exam.laude = true;
+  } else {
+    // if we skip this line, everything will work but in the db there will be a null value instead of false
+    exam.laude = false;
   }
-  else exam.laude = false;
 
-  const response = await fetch(SERVER_URL + '/api/exams', {
-    method: 'POST',
-    headers: {'Content-Type': 'application/json'},
-    body: JSON.stringify({ code: exam.code, score: exam.score, laude: exam.laude, date:exam.date.format('YYYY-MM-DD') })
-  });
+  const response = await fetch(`${SERVER_URL}/api/exams`,
+      {
+        method: 'POST',
+        headers: {'Content-Type': 'application/json'},
+        /*NB: create a new object: useful when the column names in the db have a different name from the object attributes*/
+        body: JSON.stringify({
+          code: exam.code,
+          score: exam.score,
+          laude: exam.laude,
+          date: exam.date.format('YYYY-MM-DD')
+        })
+      }
+  );
 
-  if(!response.ok){
-    const errMessage = await response.json();
-    throw errMessage;
+  if (!response.ok) { // REJECT THE PROMISE
+    throw await response.json();
   }
-  else return null;
-  // add other error handling
+  // HANDLE OTHER ERRORS
+  else return null; // .then() PROMISE
 }
 
 const deleteExam = async (courseCode) => {
@@ -39,15 +48,16 @@ const deleteExam = async (courseCode) => {
     const response = await fetch(`${SERVER_URL}/api/exams/${courseCode}`, {
       method: 'DELETE'
     });
-    if(response.ok)
+
+    if(response.ok) {
       return null;
-    else {
-      const errMessage = await response.json();
-      throw errMessage;
     }
-  } catch(err){
+    else {
+      throw await response.json();
+    }
+  } catch(err) {
     throw new Error('Cannot communicate with the server');
-    // and/or we can get some info from the 'err' object
+    // and/or get some info from the 'err' object
   }
 }
 
