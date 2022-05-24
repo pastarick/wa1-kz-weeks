@@ -1,52 +1,46 @@
-"use strict";
+'use strict';
 
 const express = require('express');
+const res = require('express/lib/response');
 const morgan = require('morgan');
 const dao = require('./dao');
-const {response} = require("express");
 
-// Init express
+// init express
 const app = express();
-const PORT = 3001; // because react uses 3000
+const port = 3001;
 
+// set up the middlewares
+app.use(morgan('dev'));
+app.use(express.json());
 
-// Set up the middlewares
-app.use(morgan('dev')); // for logging
-app.use(express.json()); // for serializing and deserializing the body
+/*** APIs ***/
 
-/*************** APIs ***************/
-
-//GET all exams
+// GET /api/exams
 app.get('/api/exams', (request, response) => {
   dao.listExams()
-      .then(exams => response.json(exams.map(e => {
-        e.date = e.date.format('YYYY-MM-DD');
-        return e;
-      })))// resolve promise
-      .catch(() => response.status(500).end()); // reject promise
+  .then(exams => response.json(exams))
+  .catch(() => response.status(500).end());
 });
 
-//PUT a new exam
-app.put('/api/exams/:code', async (res, req) => {
+// PUT /api/exams/<code>
+/* ADD VALIDATION */
+app.put('/api/exams/:code', async (req, res) => {
   const examToUpdate = req.body;
 
-  // verify that the code in the body matched the code in the URL
-  if(req.params.code === examToUpdate.code) {
+  if(req.params.code === req.body.code) {
     try {
       await dao.updateExam(examToUpdate);
       res.status(200).end();
     }
-    catch(error) {
-      res.status(503).json({error: `Database error while updating ${examToUpdate.code}`}).end();
+    catch(err) {
+      console.error(err);
+      res.status(503).json({error: `Database error while updating ${examToUpdate.code}.`});
     }
   }
   else {
-    res.status(503).json({error: `Wrong code in the request body (${examToUpdate.code})`})
+    res.status(503).json({error: `Wrong exam code in the request body.`});
   }
+});
 
-  req.params.code;
-})
-
-
-// Start the server
-app.listen(PORT, () => console.log(`Server started at http://localhost:${PORT}`));
+// activate the server
+app.listen(port, () => console.log(`Server started at http://localhost:${port}.`));
