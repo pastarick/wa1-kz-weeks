@@ -107,4 +107,26 @@ Request body: _None_
 Response: `204 No Content` (success) or `503 Service Unavailable`
 (generic error) or `404 Not Found`
 
-Response body: _None_.
+Response body: _None_
+
+Response: `200 OK` (success) or `503 Service Unavailable`
+(generic error) or `422 Unprocessable Entity`
+
+Response body: _None_
+
+### __Delete an exam__
+
+URL: `/api/exams/<exam_code>`
+
+HTTP Method: DELETE
+
+Description: Delete a passed exam given its code in the URL
+
+Example: `/api/exams/01abc`
+
+Request body: _None_
+
+Response: `204 No Content` (success) or `503 Service Unavailable`
+(generic error) or `404 Not Found`
+
+Response body: _None_
